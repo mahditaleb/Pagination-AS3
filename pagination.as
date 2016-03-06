@@ -13,11 +13,11 @@ var LastCountPerPage:Number;
 for(var i = 0; i < 9; i++ ) {
 this["p" + i].visible = false;	
 }
-pagination(61)
-function pagination(total:Number)
+function pagination(total:Number,perPage:Number)
 {
 	lastTotal = total
-	var pageCount:Number = Math.ceil(lastTotal / 10);
+	LastCountPerPage=perPage
+	var pageCount:Number = Math.ceil(lastTotal / LastCountPerPage);
 	if (pageCount > 1)
 	{
 		if (currentPage>1)
@@ -79,8 +79,8 @@ function newPage(e:Event)
 	{
 		currentPage = Number(e.target.parent.txt.text);
 	}
-	startNumber = currentPage * 10;
-	var pageCount:Number = Math.ceil(lastTotal / 10);
+	startNumber = currentPage * LastCountPerPage;
+	var pageCount:Number = Math.ceil(lastTotal / LastCountPerPage);
 	if (currentPage>1)
 	{
 		p0.visible = true;
@@ -135,7 +135,7 @@ function newPage(e:Event)
 	}
 	else
 	{
-		pagination(lastTotal);
+		pagination(lastTotal,LastCountPerPage);
 	}
 
 	for (var i=0; i<9; i++)
